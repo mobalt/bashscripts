@@ -15,15 +15,12 @@ HELPMSG
 APPNAME="ProcessStepChecks"
 VERSION="0.1.0"
 
-
 stdout_files_have_no_errors() {
-  files_exclude_pattern '*CHECK*/*.stdout' 'ERROR' >/dev/null
-  if [ $? -ne 0 ]; then
-    echo "ERROR: stdout files have errors"
-    echo "$fail"
-    return 1
-  fi
-  return 0
+  echo "================================================================================"
+  echo "===  Checking the *.stdout files for errors ...                              ==="
+  echo "================================================================================"
+  files_exclude_pattern '*CHECK*/*.stdout' 'ERROR'
+  return $?
 }
 
 source "$(dirname "$0")/../../common.sh" $@
