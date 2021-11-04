@@ -13,7 +13,7 @@ HELPMSG
 }
 
 APPNAME="ProcessStepChecks"
-VERSION="0.1.0"
+VERSION="0.1.1"
 
 stdout_files_have_no_errors() {
   echo "================================================================================"
@@ -24,5 +24,9 @@ stdout_files_have_no_errors() {
 }
 
 source "$(dirname "$0")/../../common.sh" $@
+
+exit_status=0
 source "$(dirname "$0")/../file_checks.sh"
 stdout_files_have_no_errors
+exit_status=$((exit_status + $?))
+exit $exit_status
